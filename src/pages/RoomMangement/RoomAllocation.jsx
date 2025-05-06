@@ -1,13 +1,7 @@
 import { useState } from "react";
-
-import AssignRoom from './../../components/admin/Room/AssignRoom';
-import CreateRoom from "../../components/admin/room/CreateRoom";
-import RoomList from './../../components/admin/Room/RoomList';
-
-
-
-
-
+import AssignRoom from "../../components/admin/Room/AssignRoom";
+import RoomList from "../../components/admin/Room/RoomList";
+import CreateRoom from "../../components/admin/Room/CreateRoom";
 
 
 
@@ -26,12 +20,12 @@ const RoomAllocation = () => {
     </div>
       
       {/* Create Room Component */}
-      <CreateRoom refreshRooms={refreshRooms} />
+      < CreateRoom refreshRooms={refreshRooms} />
       
     {/* Get All Rooms Component */}
-    < RoomList refreshRooms={refresh} />
+    < RoomList refreshRooms={refreshRooms} />
     {/* Assign Room Component */}
-    <AssignRoom refreshRooms={refresh} />
+    <AssignRoom refreshRooms={refreshRooms} />
   
        
     </div>
