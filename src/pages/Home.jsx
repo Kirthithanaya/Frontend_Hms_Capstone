@@ -1,11 +1,26 @@
+// src/pages/Home.jsx
+
 import React from 'react';
 
 const Home = () => {
   return (
-    <div className="p-6 text-center">
-      <h1 className="text-3xl font-bold">Welcome to the Hostel Management System</h1>
-      <p className="mt-4 text-lg text-gray-600">Please register or log in to continue.</p>
-    </div>
+    <section className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white flex items-center justify-center px-4">
+      <div className="text-center max-w-3xl">
+        <h1 className="text-5xl font-extrabold mb-6 drop-shadow-lg">Welcome to Hostel Management System 🏠</h1>
+        <p className="text-xl mb-8 font-medium">
+          Streamline room allocations, manage billing, track maintenance, and keep everything in sync —
+          all in one modern platform.
+        </p>
+        <div className="space-x-4">
+          <a href="/login" className="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-full shadow hover:bg-gray-200 transition">
+            Login
+          </a>
+          <a href="/register" className="px-6 py-3 bg-black bg-opacity-20 border border-white font-semibold rounded-full hover:bg-opacity-30 transition">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </section>
   );
 };
 
