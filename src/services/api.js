@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create an Axios instance with a base URL for all the API requests
 const api = axios.create({
-  baseURL: "https://backend-hms-capstone-3.onrender.com/api", // Replace this with your backend API URL
+  baseURL: "https://backend-hms-capstone-6.onrender.com/api", // Replace this with your backend API URL
   headers: {
     "Content-Type": "application/json",
   },

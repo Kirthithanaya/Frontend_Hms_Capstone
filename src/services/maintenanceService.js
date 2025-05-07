@@ -4,7 +4,7 @@ import api from './api'; // Assuming your Axios instance is in api.js
 // Create maintenance request function
 export const createMaintenanceRequest = async (requestData) => {
   try {
-    const response = await api.post('/maintenance/create', requestData); // POST request to /api/maintenance
+    const response = await api.post('/maintenance', requestData); // POST request to /api/maintenance
     return response.data;
   } catch (error) {
     throw error; // Propagate error to frontend
