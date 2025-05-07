@@ -12,7 +12,7 @@ export const createMaintenanceRequest = async (requestData) => {
 };
 
 // Function to fetch all maintenance requests from the backend
-// Function to fetch all maintenance requests from the backend
+
 export const getAllRequests = async () => {
   try {
     const response = await api.get('/maintenance/all'); // Call the backend API

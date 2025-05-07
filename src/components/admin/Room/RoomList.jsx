@@ -13,7 +13,7 @@ const RoomList = () => {
         toast.success("Room Fetched Successfully");
       } catch (error) {
         toast.error("Failed to load rooms");
-        console.error(error);
+      
       }
     };
 
