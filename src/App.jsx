@@ -7,7 +7,6 @@ import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Home from "./pages/Home";
 import AdminDasboard from "./pages/AdminDasboard";
 import ResidentDasboard from "./pages/ResidentDasboard";
 import RoomAllocation from "./pages/RoomMangement/RoomAllocation";
@@ -21,6 +20,7 @@ import ManageRequestAdmin from "./pages/Maintenance Requests/ManageRequestAdmin"
 import UserAdminManage from "./pages/UserMangement/UserAdminManage";
 import SendEmailAdmin from "./pages/Integration and DataManage/SendEmailAdmin";
 import SendNotificationAdmin from "./pages/Notification/SendNotificationAdmin";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
       <ToastContainer position="top-center" />
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
