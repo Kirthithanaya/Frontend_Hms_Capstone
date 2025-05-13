@@ -18,7 +18,7 @@ const AssignRoom = ({ onAssign }) => {
       residentID,
     };
 
-    onAssign(assignment); // Call parent handler to perform assignment
+    // Call parent handler to perform assignment
     toast.success('✅ Room assigned successfully!');
 
     // Reset form

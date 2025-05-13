@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {createRoom } from "../../../services/roomService";
+import { createRoom } from "../../../services/roomService";
+
 const CreateRoom = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

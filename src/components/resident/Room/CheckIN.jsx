@@ -30,7 +30,7 @@ const CheckIN = () => {
           value={roomNumber}
           onChange={(e) => setRoomNumber(e.target.value)}
           className="mt-1 block w-full p-2 border border-gray-300 rounded"
-          required
+        required
         />
       </div>
 

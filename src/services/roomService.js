@@ -13,34 +13,24 @@ export const getAllRooms = async () => {
 };
 
 // ✅ Assign a room to a resident
-export const assignRoom = async ( roomnumber,residentId) => {
-  const response = await api.put(`/rooms/assign-room/${ roomnumber }`, { residentId });
+export const assignRoom = async (roomnumber, residentId) => {
+  const response = await api.put(`/rooms/assign-room/${roomnumber}`, {
+    residentId,
+  });
   return response.data;
 };
 
-
-
-
-
 // services/checkinService.js
 
-
-
 export const checkInResident = async ({ roomNumber, residentId }) => {
-  try {
-    const response = await api.post("/rooms/check-in", { roomNumber, residentId });
-    return response.data;
-  } catch (error) {
-    console.error("Error during check-in:", error);
-    throw error.response?.data || error;
-  }
+  const response = await api.post("/rooms/check-in", {
+    roomNumber,
+    residentId,
+  });
+  return response.data;
 };
 
-
-
 // services/checkoutService.js
-
-
 
 export const checkOutResident = async ({ roomNumber }) => {
   try {
@@ -51,27 +41,6 @@ export const checkOutResident = async ({ roomNumber }) => {
     throw error.response?.data || error;
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ✅ Check-out a resident from a room
 export const checkOut = async (roomId) => {
