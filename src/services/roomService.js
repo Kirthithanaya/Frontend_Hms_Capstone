@@ -20,10 +20,9 @@ export const assignRoom = async (roomnumber, residentId) => {
   return response.data;
 };
 
-// services/checkinService.js
-
-export const checkInResident = async ({ roomNumber, residentId }) => {
-  const response = await api.post("/rooms/check-in", {
+// Check-in a resident
+export const checkInResident = async (roomNumber, residentId) => {
+  const response = await api.post('/rooms/check-in', {
     roomNumber,
     residentId,
   });
