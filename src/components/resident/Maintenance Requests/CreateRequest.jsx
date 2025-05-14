@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createMaintenanceRequest } from '../../../services/maintenanceService';
 
-
 const CreateRequest = () => {
   const [formData, setFormData] = useState({
-    issue: '',
+    issueTitle: '',
+    issueDescription: '',
     priority: 'Low',
   });
 
@@ -24,9 +24,9 @@ const CreateRequest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createMaintenanceRequest(formData); // Call the API function
+      await createMaintenanceRequest(formData); // API call
       toast.success('Request submitted successfully!');
-      navigate('/maintenance'); // Redirect to maintenance page
+      navigate('/maintenance'); // Redirect after success
     } catch (error) {
       toast.error('Failed to submit request.');
     }
@@ -36,18 +36,35 @@ const CreateRequest = () => {
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-4">Create Maintenance Request</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Issue Title */}
         <div>
-          <label className="block font-medium mb-1">Issue</label>
+          <label className="block font-medium mb-1">Issue Title</label>
           <input
             type="text"
-            name="issue"
-            value={formData.issue}
+            name="issueTitle"
+            value={formData.issueTitle}
             onChange={handleChange}
-            placeholder="e.g., Broken window"
+            placeholder="e.g., Broken Window"
             required
             className="w-full border border-gray-300 p-2 rounded"
           />
         </div>
+
+        {/* Issue Description */}
+        <div>
+          <label className="block font-medium mb-1">Issue Description</label>
+          <textarea
+            name="issueDescription"
+            value={formData.issueDescription}
+            onChange={handleChange}
+            placeholder="Describe the issue in detail..."
+            rows="4"
+            required
+            className="w-full border border-gray-300 p-2 rounded"
+          />
+        </div>
+
+        {/* Priority */}
         <div>
           <label className="block font-medium mb-1">Priority</label>
           <select
@@ -57,10 +74,11 @@ const CreateRequest = () => {
             className="w-full border border-gray-300 p-2 rounded"
           >
             <option value="Low">Low</option>
-            <option value="Normal">Normal</option>
+            <option value="Medium">Medium</option>
             <option value="High">High</option>
           </select>
         </div>
+
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"

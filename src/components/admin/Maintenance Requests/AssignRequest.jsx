@@ -1,33 +1,48 @@
-import React from 'react';
-
-import { toast } from 'react-toastify';
+// src/components/Maintenance/AssignRequest.jsx
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { assignRequest } from '../../../services/maintenanceService';
 
-const AssignRequest = () => {
-  const navigate = useNavigate();
-  const { id: requestId } = useParams(); // getting request ID from URL
-  const adminId = localStorage.getItem('adminId'); // assuming admin ID is stored here
 
-  const handleAssign = async () => {
+const AssignRequest = () => {
+  const { requestId } = useParams(); // Used internally only
+  const [staffId, setStaffId] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await assignRequest(requestId, adminId);
-      toast.success('Request successfully assigned!');
-      navigate('/all-requests');
+      await assignRequest(requestId, staffId); // Call API
+      toast.success('Maintenance request assigned successfully!');
+      navigate('/maintenance'); // Redirect after success
     } catch (error) {
-      toast.error(error.message || 'Assignment failed.');
+      toast.error('Failed to assign request.');
     }
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">Assign Request</h2>
-      <button
-        onClick={handleAssign}
-        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-      >
-        Assign to Me (Admin)
-      </button>
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+      <h2 className="text-2xl font-bold mb-4">Assign Maintenance Request</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block font-medium mb-1">Staff ID</label>
+          <input
+            type="text"
+            value={staffId}
+            onChange={(e) => setStaffId(e.target.value)}
+            placeholder="Enter Staff ID"
+            required
+            className="w-full border border-gray-300 p-2 rounded"
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        >
+          Assign Request
+        </button>
+      </form>
     </div>
   );
 };

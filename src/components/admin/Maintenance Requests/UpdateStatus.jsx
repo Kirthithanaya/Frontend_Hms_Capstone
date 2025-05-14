@@ -1,48 +1,65 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useNavigate, useParams } from 'react-router-dom';
 import { updateStatus } from '../../../services/maintenanceService';
 
 const UpdateStatus = () => {
-  const { id: requestId } = useParams(); // Get request ID from URL params
-  const [status, setStatus] = useState(''); // State to manage the selected status
-  const navigate = useNavigate();
+  const { id: requestId } = useParams(); // Get requestId from URL
+  const navigate = useNavigate(); // For redirection
+
+  const [status, setStatus] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleUpdateStatus = async () => {
+    if (!status || !message) {
+      toast.error('Please select a status and enter a message.');
+      return;
+    }
+
     try {
-      // Call the API function to update status
-      await updateStatus(requestId, status);
+      await updateStatus(requestId, { status, message });
 
       toast.success('Status updated successfully!');
-      navigate('/all-requests'); // Navigate after success (adjust route as needed)
+      navigate('/all-requests'); // Redirect after success
     } catch (error) {
-      toast.error(error.message || 'Failed to update status');
+      toast.error(
+        error.response?.data?.error || 'Failed to update status. Please try again.'
+      );
     }
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">Update Maintenance Request Status</h2>
+    <div className="max-w-lg mx-auto mt-10 bg-white p-6 rounded shadow">
+      <h2 className="text-2xl font-bold mb-4">Update Maintenance Request Status</h2>
 
       <div className="mb-4">
-        <label htmlFor="status" className="block text-sm font-medium mb-2">Select Status:</label>
+        <label className="block text-sm font-medium mb-1">Select Status</label>
         <select
-          id="status"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className="w-full p-2 border rounded"
-          required
         >
-          
-          <option value="Pending">pending</option>
-          <option value="In Progress">in Progress</option>
-          <option value="In Progress">resolved</option>
+          <option value="">-- Select Status --</option>
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
         </select>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium mb-1">Message</label>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          rows="3"
+          className="w-full p-2 border rounded"
+          placeholder="Enter update message"
+        />
       </div>
 
       <button
         onClick={handleUpdateStatus}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
       >
         Update Status
       </button>
