@@ -20,14 +20,24 @@ export const assignRoom = async (roomnumber, residentId) => {
   return response.data;
 };
 
-// Check-in a resident
+
+
+// ✅ Check-in Resident API call
 export const checkInResident = async (roomNumber, residentId) => {
-  const response = await api.post('/rooms/check-in', {
-    roomNumber,
-    residentId,
-  });
-  return response.data;
+  try {
+    const response = await api.post('/rooms/check-in', {
+      roomNumber,
+      residentId,
+    });
+
+    return response.data; // { message: 'Check-in successful' }
+  } catch (error) {
+    // Forward error for toast or component handling
+    const message = error.response?.data?.message || 'Check-in failed';
+    throw new Error(message);
+  }
 };
+
 
 // services/checkoutService.js
 
