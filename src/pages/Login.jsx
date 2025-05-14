@@ -1,5 +1,5 @@
-import  { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
 import { toast } from 'react-toastify';
 
@@ -23,7 +23,7 @@ const Login = () => {
 
       toast.success('Login successful!');
 
-      // 🔀 Navigate based on role
+      // Navigate based on role
       if (user.role === 'admin') {
         navigate('/admin-dashboard');
       } else if (user.role === 'resident') {
@@ -76,11 +76,17 @@ const Login = () => {
         </button>
 
         <p className="text-sm text-center">
-          Forgot password? <span onClick={() => navigate('/forgot-password')} className="text-blue-600 cursor-pointer">Reset</span>
+          Forgot password?{' '}
+          <Link to="/forgot-password" className="text-blue-600 hover:underline">
+            Reset
+          </Link>
         </p>
 
         <p className="text-sm text-center">
-          Don't have an account? <span onClick={() => navigate('/register')} className="text-blue-600 cursor-pointer">Register</span>
+          Don’t have an account?{' '}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Register
+          </Link>
         </p>
       </form>
     </div>
